@@ -1,14 +1,17 @@
 import type { PlasmoCSConfig } from "plasmo"
 
-export const config: PlasmoCSConfig = {
-  matches: ["<all_urls>"],
-  all_frames: true
-}
+import data from "../data/websites.json"
 
-window.addEventListener("load", () => {
-  console.log(
-    "You may find that having is not so pleasing a thing as wanting. This is not logical, but it is often true."
-  )
+// export const config: PlasmoCSConfig = {
+//   matches: ["<all_urls>"],
+//   run_at: "document_end",
+//   all_frames: false
+// }
 
-  document.body.style.background = "pink"
+console.log(window.location.href)
+
+data.forEach((website) => {
+  if (window.location.href.includes(website.url)) {
+    window.location.href = "https://portfoliowithbeans.netlify.app"
+  }
 })
