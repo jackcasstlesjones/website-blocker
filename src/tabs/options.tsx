@@ -1,32 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "~/style.css";
 
 import addWebsite from "~utils/addWebsite";
-
-import data from "../data/websites.json";
+// import data from "../data/websites.json";
+import { addToStorage, storageGetter } from "~utils/storageHandler";
 
 function OptionsPage() {
+  const [data, setData] = useState();
   const [websiteUrl, setWebsiteUrl] = useState<string>("");
   const [websiteName, setWebsiteName] = useState<string>("");
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault(); // Prevent the form from reloading the page
-
-    // Call the addWebsite function with the provided name and URL
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (websiteName && websiteUrl) {
-      addWebsite(websiteName, websiteUrl);
+      await addToStorage(websiteName, websiteUrl);
+      const updatedData = await storageGetter();
+      setData(updatedData);
+      setWebsiteName("");
+      setWebsiteUrl("");
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const myData = await storageGetter();
+      setData(myData);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
       <h1>I am the options page</h1>
       <h2>Hear me roar</h2>
       <p>The websites you are currently blocking are:</p>
-      {data.map((website) => {
-        return <p>{website.url}</p>;
-      })}
+      {data
+        ? data.map((website) => {
+            return <p>{website.url}</p>;
+          })
+        : undefined}
       <form
         action="submit"
         onSubmit={handleSubmit}
@@ -35,6 +48,7 @@ function OptionsPage() {
           Enter a nickname for the website you want to block
         </label>
         <input
+          value={websiteName}
           className="plasmo-border-2 plasmo-border-black plasmo-w-52"
           name="websiteName"
           type="text"
@@ -44,7 +58,8 @@ function OptionsPage() {
           Enter the base URL of the website you want to block
         </label>
         <input
-          className="plasmo-border-2 plasmo-border-black plasmo-w-52"
+          value={websiteUrl}
+className="plasmo-border-2 plasmo-border-black plasmo-w-52"
           name="url"
           type="text"
           onChange={(e) => setWebsiteUrl(e.target.value)}

@@ -9,7 +9,7 @@ const logger = async () => {
   data.forEach((website) => {
     console.log(website.url);
     if (window.location.href.includes(website.url)) {
-      window.location.href = "https://viatora.co.uk";
+      window.location.href = "https://altl.io/";
     }
   });
 };
