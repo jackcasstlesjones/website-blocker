@@ -1,6 +1,6 @@
-import { Storage } from "@plasmohq/storage"
+import { Storage } from "@plasmohq/storage";
 
-const storage = new Storage()
+const storage = new Storage();
 
 const storageGetter = async () => {
   await storage.set("websites", [
@@ -12,9 +12,9 @@ const storageGetter = async () => {
       websiteName: "Ebay",
       url: "ebay.co.uk"
     }
-  ])
-  const data = await storage.get("websites") // { color: "red" }
-  return typeof data === "string" ? JSON.parse(data) : data
-}
+  ]);
+  const data = await storage.get("websites"); // { color: "red" }
+  return typeof data === "string" ? JSON.parse(data) : data;
+};
 
-export { storageGetter }
+export { storageGetter };

@@ -1,23 +1,23 @@
-import { useState } from "react"
+import { useState } from "react";
 
-import "~/style.css"
+import "~/style.css";
 
-import addWebsite from "~utils/addWebsite"
+import addWebsite from "~utils/addWebsite";
 
-import data from "../data/websites.json"
+import data from "../data/websites.json";
 
 function OptionsPage() {
-  const [websiteUrl, setWebsiteUrl] = useState<string>("")
-  const [websiteName, setWebsiteName] = useState<string>("")
+  const [websiteUrl, setWebsiteUrl] = useState<string>("");
+  const [websiteName, setWebsiteName] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault() // Prevent the form from reloading the page
+    event.preventDefault(); // Prevent the form from reloading the page
 
     // Call the addWebsite function with the provided name and URL
     if (websiteName && websiteUrl) {
-      addWebsite(websiteName, websiteUrl)
+      addWebsite(websiteName, websiteUrl);
     }
-  }
+  };
 
   return (
     <div>
@@ -25,7 +25,7 @@ function OptionsPage() {
       <h2>Hear me roar</h2>
       <p>The websites you are currently blocking are:</p>
       {data.map((website) => {
-        return <p>{website.url}</p>
+        return <p>{website.url}</p>;
       })}
       <form
         action="submit"
@@ -57,7 +57,7 @@ function OptionsPage() {
         </button>
       </form>
     </div>
-  )
+  );
 }
 
-export default OptionsPage
+export default OptionsPage;

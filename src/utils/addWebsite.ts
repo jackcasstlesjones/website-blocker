@@ -1,18 +1,18 @@
 export default function addWebsite(userName: string, userUrl: string) {
-  const fs = require("fs")
+  const fs = require("fs");
 
   // Read the current JSON data
   fs.readFile("data/websites.json", "utf8", (err, data) => {
     if (err) {
-      console.error("Error reading the file", err)
-      return
+      console.error("Error reading the file", err);
+      return;
     }
 
     // Parse the JSON string into an object (array)
-    const websites = JSON.parse(data)
+    const websites = JSON.parse(data);
 
     // Add a new item to the array
-    websites.push({ name: userName, url: userUrl })
+    websites.push({ name: userName, url: userUrl });
 
     // Write the updated array back to the file
     fs.writeFile(
@@ -21,11 +21,11 @@ export default function addWebsite(userName: string, userUrl: string) {
       "utf8",
       (err) => {
         if (err) {
-          console.error("Error writing to the file", err)
-          return
+          console.error("Error writing to the file", err);
+          return;
         }
-        console.log("Item added successfully!")
+        console.log("Item added successfully!");
       }
-    )
-  })
+    );
+  });
 }

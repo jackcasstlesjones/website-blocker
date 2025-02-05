@@ -1,4 +1,4 @@
-import "~style.css"
+import "~style.css";
 
 function IndexPopup() {
   return (
@@ -9,7 +9,7 @@ function IndexPopup() {
         Click here to go to options
       </a>
     </div>
-  )
+  );
 }
 
-export default IndexPopup
+export default IndexPopup;
