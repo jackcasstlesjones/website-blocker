@@ -36,10 +36,13 @@ function OptionsPage() {
   }, []);
 
   return (
-    <div>
-      <h1>I am the options page</h1>
-      <h2>Hear me roar</h2>
-      <p>The websites you are currently blocking are:</p>
+    <div className="plasmo-flex plasmo-flex-col plasmo-justify-center plasmo-items-center plasmo-h-28-2">
+      <h1 className="plasmo-text-5xl plasmo-text-center plasmo-mb-10">
+        Options
+      </h1>
+      <p className="plasmo-text-lg plasmo-mb-2">
+        The websites you are currently blocking are:
+      </p>
       {data
         ? data.map((website) => {
             return <p>{website.url}</p>;
@@ -59,7 +62,7 @@ function OptionsPage() {
           type="text"
           onChange={(e) => setWebsiteName(e.target.value)}
         />
-        <label htmlFor="url">
+        <label className="plasmo-mt-10" htmlFor="url">
           Enter the base URL of the website you want to block
         </label>
         <input
