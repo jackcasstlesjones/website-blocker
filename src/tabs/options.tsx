@@ -6,8 +6,13 @@ import addWebsite from "~utils/addWebsite";
 // import data from "../data/websites.json";
 import { addToStorage, storageGetter } from "~utils/storageHandler";
 
+interface Website {
+  websiteName: string;
+  url: string;
+}
+
 function OptionsPage() {
-  const [data, setData] = useState();
+  const [data, setData] = useState<Website[]>();
   const [websiteUrl, setWebsiteUrl] = useState<string>("");
   const [websiteName, setWebsiteName] = useState<string>("");
 
@@ -59,7 +64,7 @@ function OptionsPage() {
         </label>
         <input
           value={websiteUrl}
-className="plasmo-border-2 plasmo-border-black plasmo-w-52"
+          className="plasmo-border-2 plasmo-border-black plasmo-w-52"
           name="url"
           type="text"
           onChange={(e) => setWebsiteUrl(e.target.value)}
