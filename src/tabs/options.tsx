@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { clearWebsites } from "~utils/storageHandler";
+
 import "~/style.css";
 
 import {
@@ -10,23 +12,27 @@ import {
 } from "~utils/storageHandler";
 
 interface Website {
-  websiteName: string;
   url: string;
 }
 
 function OptionsPage() {
   const [data, setData] = useState<Website[]>();
   const [websiteUrl, setWebsiteUrl] = useState<string>("");
-  const [websiteName, setWebsiteName] = useState<string>("");
+  // const [websiteName, setWebsiteName] = useState<string>("");
   const [isEnabled, setIsEnabledState] = useState<boolean>(true);
+
+  const handleClear = async () => {
+    await clearWebsites();
+    setData([]); // Clear the local state
+  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (websiteName && websiteUrl) {
-      await addToStorage(websiteName, websiteUrl);
+    console.log("??askdfjasdkfjhs");
+    if (websiteUrl) {
+      await addToStorage(websiteUrl);
       const updatedData = await storageGetter();
       setData(updatedData);
-      setWebsiteName("");
       setWebsiteUrl("");
     }
   };
@@ -71,16 +77,6 @@ function OptionsPage() {
         action="submit"
         onSubmit={handleSubmit}
         className="plasmo-gap-5 plasmo-justify-center plasmo-items-center plasmo-flex plasmo-p-5 plasmo-flex-col">
-        <label htmlFor="websiteName">
-          Enter a nickname for the website you want to block
-        </label>
-        <input
-          value={websiteName}
-          className="plasmo-border-2 plasmo-border-black plasmo-w-52"
-          name="websiteName"
-          type="text"
-          onChange={(e) => setWebsiteName(e.target.value)}
-        />
         <label className="plasmo-mt-10" htmlFor="url">
           Enter the base URL of the website you want to block
         </label>
@@ -98,6 +94,12 @@ function OptionsPage() {
           Add website
         </button>
       </form>
+      <button
+        onClick={handleClear}
+        className="plasmo-bg-red-600 plasmo-text-white plasmo-p-5 plasmo-rounded-md plasmo-mt-4"
+        type="button">
+        Clear All Blocked Websites
+      </button>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-export default function addWebsite(userName: string, userUrl: string) {
+export default function addWebsite(userUrl: string) {
   const fs = require("fs");
 
   // Read the current JSON data
@@ -12,7 +12,7 @@ export default function addWebsite(userName: string, userUrl: string) {
     const websites = JSON.parse(data);
 
     // Add a new item to the array
-    websites.push({ name: userName, url: userUrl });
+    websites.push(userUrl);
 
     // Write the updated array back to the file
     fs.writeFile(
