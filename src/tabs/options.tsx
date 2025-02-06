@@ -53,8 +53,8 @@ function OptionsPage() {
     <div className="plasmo-flex plasmo-flex-col plasmo-justify-center plasmo-items-center plasmo-h-28-2">
       <button
         onClick={handleEnabledClick}
-        className={`plasmo-w-64 plasmo-h-64 plasmo-text-5xl plasmo-rounded-full plasmo-my-24 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-red-500" : "plasmo-bg-green-500"}`}>
-        {isEnabled ? `Disable` : `Enable`}
+        className={`plasmo-w-64 plasmo-h-64 plasmo-text-5xl plasmo-rounded-full plasmo-my-24 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-green-500" : "plasmo-bg-red-500"}`}>
+        {isEnabled ? `Unblock` : `Block`}
       </button>
       <h1 className="plasmo-text-5xl plasmo-text-center plasmo-mb-10">
         Options
