@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 
 import "~/style.css";
 
-import addWebsite from "~utils/addWebsite";
-// import data from "../data/websites.json";
-import { addToStorage, storageGetter } from "~utils/storageHandler";
+import {
+  addToStorage,
+  getIsEnabled,
+  setIsEnabled,
+  storageGetter
+} from "~utils/storageHandler";
 
 interface Website {
   websiteName: string;
@@ -15,7 +18,7 @@ function OptionsPage() {
   const [data, setData] = useState<Website[]>();
   const [websiteUrl, setWebsiteUrl] = useState<string>("");
   const [websiteName, setWebsiteName] = useState<string>("");
-  const [isEnabled, setIsEnabled] = useState<boolean>(true);
+  const [isEnabled, setIsEnabledState] = useState<boolean>(true);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -28,14 +31,20 @@ function OptionsPage() {
     }
   };
 
-  const handleEnabledClick = () => {
-    setIsEnabled(!isEnabled);
+  const handleEnabledClick = async () => {
+    const newState = !isEnabled;
+    setIsEnabledState(newState);
+    await setIsEnabled(newState);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const myData = await storageGetter();
+      const [myData, enabled] = await Promise.all([
+        storageGetter(),
+        getIsEnabled()
+      ]);
       setData(myData);
+      setIsEnabledState(enabled);
     };
     fetchData();
   }, []);
@@ -54,8 +63,8 @@ function OptionsPage() {
         The websites you are currently blocking are:
       </p>
       {data
-        ? data.map((website) => {
-            return <p>{website.url}</p>;
+        ? data.map((website, index) => {
+            return <p key={index}>{website.url}</p>;
           })
         : undefined}
       <form

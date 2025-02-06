@@ -32,4 +32,13 @@ const addToStorage = async (websiteName, url) => {
   return updatedData;
 };
 
-export { storageGetter, addToStorage };
+const setIsEnabled = async (enabled: boolean) => {
+  await storage.set("isEnabled", enabled);
+};
+
+const getIsEnabled = async (): Promise<boolean> => {
+  const enabled = await storage.get<boolean>("isEnabled");
+  return enabled ?? true; // Default to true if not set
+};
+
+export { storageGetter, addToStorage, setIsEnabled, getIsEnabled };

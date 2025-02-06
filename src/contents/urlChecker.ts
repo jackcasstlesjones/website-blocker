@@ -1,16 +1,33 @@
-// import data from "../data/websites.json"
-import { storageGetter } from "../utils/storageHandler";
+import { Storage } from "@plasmohq/storage";
 
-console.log(window.location.href);
-// console.log(storageGetter())
-const logger = async () => {
+import { getIsEnabled, storageGetter } from "../utils/storageHandler";
+
+const storage = new Storage();
+
+const urlChecker = async () => {
   const data = await storageGetter();
-  console.log(data);
+  const isEnabled = getIsEnabled();
+
+  if (!isEnabled) {
+    return;
+  }
+
   data.forEach((website) => {
-    console.log(website.url);
     if (window.location.href.includes(website.url)) {
       window.location.href = "https://altl.io/";
     }
   });
 };
-logger();
+
+urlChecker();
+
+storage.watch({
+  isEnabled: async (change) => {
+    if (change.newValue) {
+      await urlChecker();
+    }
+  },
+  websites: async () => {
+    await urlChecker();
+  }
+});
