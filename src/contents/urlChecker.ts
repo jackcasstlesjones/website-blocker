@@ -6,7 +6,7 @@ const storage = new Storage();
 
 const urlChecker = async () => {
   const data = await storageGetter();
-  const isEnabled = getIsEnabled();
+  const isEnabled = await getIsEnabled();
 
   if (!isEnabled) {
     return;
