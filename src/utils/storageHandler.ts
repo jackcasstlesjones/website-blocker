@@ -29,10 +29,18 @@ const clearWebsites = async () => {
   return [];
 };
 
+const removeWebsite = async (index) => {
+  const currentArray = (await storage.get<any[]>("websites")) || [];
+  currentArray.splice(index, 1);
+  await storage.set("websites", currentArray);
+  console.log(index);
+};
+
 export {
   storageGetter,
   addToStorage,
   setIsEnabled,
   getIsEnabled,
-  clearWebsites
+  clearWebsites,
+  removeWebsite
 };

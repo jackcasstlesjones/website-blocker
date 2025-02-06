@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { clearWebsites } from "~utils/storageHandler";
+import { clearWebsites, removeWebsite } from "~utils/storageHandler";
 
 import "~/style.css";
 
@@ -18,7 +18,6 @@ interface Website {
 function OptionsPage() {
   const [data, setData] = useState<Website[]>();
   const [websiteUrl, setWebsiteUrl] = useState<string>("");
-  // const [websiteName, setWebsiteName] = useState<string>("");
   const [isEnabled, setIsEnabledState] = useState<boolean>(true);
 
   const handleClear = async () => {
@@ -29,6 +28,7 @@ function OptionsPage() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log("??askdfjasdkfjhs");
+    console.log(data);
     if (websiteUrl) {
       await addToStorage(websiteUrl);
       const updatedData = await storageGetter();
@@ -41,6 +41,13 @@ function OptionsPage() {
     const newState = !isEnabled;
     setIsEnabledState(newState);
     await setIsEnabled(newState);
+  };
+
+  const handleWebsiteRemove = async (index) => {
+    await removeWebsite(index);
+    const updatedData = await storageGetter();
+    setData(updatedData);
+    console.log(index);
   };
 
   useEffect(() => {
@@ -74,7 +81,9 @@ function OptionsPage() {
                   <p className="plasmo-text-lg" key={index}>
                     {website.url}
                   </p>
-                  <button className="plasmo-text-lg plasmo-bg-red-600 plasmo-px-2   plasmo-text-white">
+                  <button
+                    onClick={async () => handleWebsiteRemove(index)}
+                    className="plasmo-text-lg plasmo-bg-red-600 plasmo-px-2   plasmo-text-white">
                     x
                   </button>
                 </div>
