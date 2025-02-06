@@ -15,6 +15,7 @@ function OptionsPage() {
   const [data, setData] = useState<Website[]>();
   const [websiteUrl, setWebsiteUrl] = useState<string>("");
   const [websiteName, setWebsiteName] = useState<string>("");
+  const [isEnabled, setIsEnabled] = useState<boolean>(true);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,6 +28,10 @@ function OptionsPage() {
     }
   };
 
+  const handleEnabledClick = () => {
+    setIsEnabled(!isEnabled);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const myData = await storageGetter();
@@ -37,6 +42,11 @@ function OptionsPage() {
 
   return (
     <div className="plasmo-flex plasmo-flex-col plasmo-justify-center plasmo-items-center plasmo-h-28-2">
+      <button
+        onClick={handleEnabledClick}
+        className={`plasmo-w-64 plasmo-h-64 plasmo-text-5xl plasmo-rounded-full plasmo-my-24 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-red-500" : "plasmo-bg-green-500"}`}>
+        {isEnabled ? `Disable` : `Enable`}
+      </button>
       <h1 className="plasmo-text-5xl plasmo-text-center plasmo-mb-10">
         Options
       </h1>
