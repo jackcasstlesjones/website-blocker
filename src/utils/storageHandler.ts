@@ -3,7 +3,7 @@ import { Storage } from "@plasmohq/storage";
 const storage = new Storage();
 
 const storageGetter = async () => {
-  const data = await storage.get("websites"); // { color: "red" }
+  const data = await storage.get("websites");
   return typeof data === "string" ? JSON.parse(data) : data;
 };
 
@@ -21,10 +21,9 @@ const setIsEnabled = async (enabled: boolean) => {
 
 const getIsEnabled = async (): Promise<boolean> => {
   const enabled = await storage.get<boolean>("isEnabled");
-  return enabled ?? true; // Default to true if not set
+  return enabled ?? true;
 };
 
-// storageHandler.ts
 const clearWebsites = async () => {
   await storage.set("websites", []);
   return [];
