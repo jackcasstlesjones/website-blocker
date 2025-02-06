@@ -31,7 +31,18 @@
       "https://*/*"
     ],
     "permissions": [
-      "tabs"
-    ]
+      "tabs",
+      "commands",
+      "notifications"
+    ],
+    "commands": {
+      "toggle-blocker": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+X",
+          "mac": "Command+Shift+X"
+        },
+        "description": "Toggle website blocker"
+      }
+    }
   }
 }
