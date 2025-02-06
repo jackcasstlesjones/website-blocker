@@ -45,10 +45,8 @@ function OptionsPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [myData, enabled] = await Promise.all([
-        storageGetter(),
-        getIsEnabled()
-      ]);
+      const myData = await storageGetter();
+      const enabled = await getIsEnabled();
       setData(myData);
       setIsEnabledState(enabled);
     };
