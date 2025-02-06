@@ -68,11 +68,22 @@ function OptionsPage() {
       <p className="plasmo-text-lg plasmo-mb-2">
         The websites you are currently blocking are:
       </p>
-      {data
-        ? data.map((website, index) => {
-            return <p key={index}>{website.url}</p>;
-          })
-        : undefined}
+      <div className="plasmo-flex plasmo-flex-col plasmo-gap-2">
+        {data
+          ? data.map((website, index) => {
+              return (
+                <div className="plasmo-flex plasmo-gap-2">
+                  <p className="plasmo-text-lg" key={index}>
+                    {website.url}
+                  </p>
+                  <button className="plasmo-text-lg plasmo-bg-red-600 plasmo-px-2   plasmo-text-white">
+                    x
+                  </button>
+                </div>
+              );
+            })
+          : undefined}
+      </div>
       <form
         action="submit"
         onSubmit={handleSubmit}
