@@ -22,7 +22,7 @@ function OptionsPage() {
 
   const handleClear = async () => {
     await clearWebsites();
-    setData([]); // Clear the local state
+    setData([]);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -64,7 +64,7 @@ function OptionsPage() {
     <div className="plasmo-flex plasmo-flex-col plasmo-justify-center plasmo-items-center plasmo-h-28-2">
       <button
         onClick={handleEnabledClick}
-        className={`plasmo-w-64 plasmo-h-64 plasmo-text-5xl plasmo-rounded-full plasmo-my-24 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-green-500" : "plasmo-bg-red-500"}`}>
+        className={`plasmo-w-64 plasmo-h-40 plasmo-text-5xl plasmo-rounded-md plasmo-mt-10 plasmo-mb-10 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-green-500" : "plasmo-bg-red-500"}`}>
         {isEnabled ? `Unblock` : `Block`}
       </button>
       <h1 className="plasmo-text-5xl plasmo-text-center plasmo-mb-10">
@@ -95,26 +95,26 @@ function OptionsPage() {
         action="submit"
         onSubmit={handleSubmit}
         className="plasmo-gap-5 plasmo-justify-center plasmo-items-center plasmo-flex plasmo-p-5 plasmo-flex-col">
-        <label className="plasmo-mt-10" htmlFor="url">
+        <label className="plasmo-mt-10 plasmo-text-lg" htmlFor="url">
           Enter the base URL of the website you want to block
         </label>
         <input
           value={websiteUrl}
-          className="plasmo-border-2 plasmo-border-black plasmo-w-52"
+          className="plasmo-border-2 plasmo-border-black plasmo-w-52 plasmo-text-lg"
           name="url"
           type="text"
           onChange={(e) => setWebsiteUrl(e.target.value)}
         />
 
         <button
-          className="plasmo-bg-green-600 plasmo-text-white plasmo-p-5 plasmo-rounded-md"
+          className="plasmo-bg-green-600 plasmo-text-white plasmo-p-5 plasmo-rounded-md plasmo-text-lg"
           type="submit">
           Add website
         </button>
       </form>
       <button
         onClick={handleClear}
-        className="plasmo-bg-red-600 plasmo-text-white plasmo-p-5 plasmo-rounded-md plasmo-mt-4"
+        className="plasmo-bg-red-600 plasmo-text-white plasmo-p-5 plasmo-rounded-md plasmo-mt-4 plasmo-mb-10"
         type="button">
         Clear All Blocked Websites
       </button>
