@@ -18,14 +18,17 @@ chrome.commands.onCommand.addListener(async (command) => {
 
 const changeIcon = async () => {
   const isEnabled = await getIsEnabled();
+  console.log(`is enabled: ${isEnabled}`);
   if (isEnabled) {
+    console.log("I am enabled");
     chrome.action.setIcon({
       path: {
         16: red16,
         32: red32
       }
     });
-  } else {
+  } else if (!isEnabled) {
+    console.log("I am not");
     chrome.action.setIcon({
       path: {
         16: green16,
@@ -38,9 +41,7 @@ const changeIcon = async () => {
 changeIcon();
 
 storage.watch({
-  isEnabled: async (change) => {
-    if (change.newValue) {
-      await changeIcon();
-    }
+  isEnabled: async () => {
+    await changeIcon();
   }
 });
