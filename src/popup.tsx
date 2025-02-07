@@ -13,6 +13,8 @@ function IndexPopup() {
     await setIsEnabled(newState);
   };
 
+  const extensionId = chrome.runtime.id;
+
   useEffect(() => {
     const fetchEnabled = async () => {
       const enabled = await getIsEnabled();
@@ -32,7 +34,7 @@ function IndexPopup() {
       <a
         className="plasmo-bg-slate-900 plasmo-p-3 plasmo-text-white plasmo-rounded-md"
         target="_blank"
-        href="chrome-extension://npcfjbmndnhebnfdipfegbhcgmpfonjd/tabs/options.html">
+        href={`chrome-extension://${extensionId}/tabs/options.html`}>
         Options
       </a>
     </div>
