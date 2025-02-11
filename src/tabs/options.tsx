@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { clearWebsites, removeWebsite } from "~utils/storageHandler";
+import Toggle from "~features/toggle";
+import { removeWebsite } from "~utils/storageHandler";
 
 import "~/style.css";
 
@@ -65,13 +66,16 @@ function OptionsPage() {
       <h1 className="plasmo-text-5xl plasmo-absolute plasmo-left-10 plasmo-top-10 plasmo-mb-10">
         Beanblocker
       </h1>
-      <div className="plasmo-flex plasmo-flex-col plasmo-justify-center plasmo-items-center plasmo-h-28-2 plasmo-bg-gray-100 plasmo-w-8/12">
-        <button
-          onClick={handleEnabledClick}
-          className={`plasmo-w-40 plasmo-h-20 plasmo-text-white plasmo-text-3xl plasmo-rounded-md plasmo-mt-10 plasmo-mb-10 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-green-600" : "plasmo-bg-red-600"}`}>
-          {isEnabled ? `Unblock` : `Block`}
-        </button>
-
+      <div className="plasmo-flex plasmo-flex-col plasmo-justify-center plasmo-items-center plasmo-h-28-2 plasmo-bg-gray-100 plasmo-w-8/12 plasmo-gap-32">
+        {/* <button */}
+        {/*   onClick={handleEnabledClick} */}
+        {/*   className={`plasmo-w-40 plasmo-h-20 plasmo-text-white plasmo-text-3xl plasmo-rounded-md plasmo-mt-10 plasmo-mb-10 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-green-600" : "plasmo-bg-red-600"}`}> */}
+        {/*   {isEnabled ? `Unblock` : `Block`} */}
+        {/* </button> */}
+        <div className=" plasmo-h-52 plasmo-gap-5 plasmo-w-72 plasmo-flex plasmo-flex-col plasmo-justify-center plasmo-items-center plasmo-bg-white plasmo-flex-grow-0 plasmo-rounded-md plasmo-shadow-md">
+          <h2 className="plasmo-text-xl">Toggle on/off</h2>
+          <Toggle onChange={handleEnabledClick} checked={isEnabled} />
+        </div>
         <div className="plasmo-bg-white plasmo-w-3/4 plasmo-py-10">
           <form
             action="submit"
