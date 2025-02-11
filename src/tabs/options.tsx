@@ -62,27 +62,27 @@ function OptionsPage() {
 
   return (
     <div className="plasmo-flex plasmo-justify-between">
+      <h1 className="plasmo-text-5xl plasmo-absolute plasmo-left-10 plasmo-top-10 plasmo-mb-10">
+        Beanblocker
+      </h1>
       <div className="plasmo-flex plasmo-flex-col plasmo-justify-center plasmo-items-center plasmo-h-28-2 plasmo-bg-gray-100 plasmo-w-8/12">
-        {/* <button */}
-        {/*   onClick={handleEnabledClick} */}
-        {/*   className={`plasmo-w-64 plasmo-h-40 plasmo-text-5xl plasmo-rounded-md plasmo-mt-10 plasmo-mb-10 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-green-500" : "plasmo-bg-red-500"}`}> */}
-        {/*   {isEnabled ? `Unblock` : `Block`} */}
-        {/* </button> */}
+        <button
+          onClick={handleEnabledClick}
+          className={`plasmo-w-40 plasmo-h-20 plasmo-text-white plasmo-text-3xl plasmo-rounded-md plasmo-mt-10 plasmo-mb-10 focus:plasmo-ring-8 focus:plasmo-ring-blue-400 ${isEnabled ? "plasmo-bg-green-600" : "plasmo-bg-red-600"}`}>
+          {isEnabled ? `Unblock` : `Block`}
+        </button>
 
-        <h1 className="plasmo-text-5xl plasmo-text-center plasmo-mb-10">
-          Options
-        </h1>
         <div className="plasmo-bg-white plasmo-w-3/4 plasmo-py-10">
           <form
             action="submit"
             onSubmit={handleSubmit}
-            className="plasmo-gap-16 plasmo-justify-center plasmo-items-center plasmo-flex plasmo-p-5 plasmo-flex-col">
-            <label className="plasmo-mt-10 plasmo-text-lg" htmlFor="url">
+            className="plasmo-gap-10 plasmo-justify-center plasmo-items-center plasmo-flex plasmo-p-5 plasmo-flex-col">
+            <label className="plasmo-mt-10 plasmo-hidden" htmlFor="url">
               Add a Website
             </label>
             <input
               value={websiteUrl}
-              className="plasmo-border-b-2  plasmo-w-52 plasmo-text-lg"
+              className="plasmo-border-b-2 plasmo-mt-10  plasmo-w-52 plasmo-text-lg"
               placeholder="reddit.com"
               name="url"
               type="text"
@@ -107,11 +107,11 @@ function OptionsPage() {
         <p className="plasmo-my-10 plasmo-text-center plasmo-text-2xl">
           Currently blocked
         </p>
-        <div className="plasmo-flex plasmo-flex-wrap  plasmo-gap-5 plasmo-bg-gray-200 plasmo-shadow-sm plasmo-p-10 plasmo-w-10/12 plasmo-m-auto plasmo-rounded-md">
+        <div className="plasmo-flex plasmo-flex-wrap  plasmo-gap-3 plasmo-bg-gray-200 plasmo-shadow-sm plasmo-p-10 plasmo-w-10/12 plasmo-m-auto plasmo-rounded-md">
           {data
             ? data.map((website, index) => {
                 return (
-                  <div className="plasmo-flex plasmo-gap-3 plasmo-bg-white plasmo-rounded-full plasmo-p-1">
+                  <div className="plasmo-flex plasmo-gap-2 plasmo-bg-white plasmo-rounded-full plasmo-p-1">
                     <p className="plasmo-text-lg plasmo-pl-3" key={index}>
                       {website.url}
                     </p>
