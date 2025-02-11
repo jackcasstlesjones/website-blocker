@@ -76,7 +76,7 @@ function OptionsPage() {
           <h2 className="plasmo-text-xl">Toggle on/off</h2>
           <Toggle onChange={handleEnabledClick} checked={isEnabled} />
         </div>
-        <div className="plasmo-bg-white plasmo-w-3/4 plasmo-py-10">
+        <div className="plasmo-bg-white plasmo-w-3/4 plasmo-py-10 plasmo-shadow-md">
           <form
             action="submit"
             onSubmit={handleSubmit}
@@ -107,7 +107,7 @@ function OptionsPage() {
         {/*   Clear All Blocked Websites */}
         {/* </button> */}
       </div>
-      <div className="plasmo-shadow-lg plasmo-w-4/12 plasmo-h-screen">
+      <div className="plasmo-shadow-md plasmo-w-4/12 plasmo-h-screen">
         <p className="plasmo-my-10 plasmo-text-center plasmo-text-2xl">
           Currently blocked
         </p>
